@@ -26,7 +26,6 @@ $(document).ready(function(){
             url: genURL,
             method: "GET"
         }).then(function(response){
-            // console.log(response);
             // PSEUDO CODE
             // Take the following:
             //     1. temp -> response.main.temp
@@ -38,7 +37,12 @@ $(document).ready(function(){
             $(".wind").text(response.wind.speed.toFixed(1));
         });
 
-
+        // PSEUDO CODE
+        // Create a button for each city after user searches
+            // append to nav
+        // After refreshing the page, the user will still have access to the city's weather data -- localStorage
+            // each localstorage setItem will have a unique name
+        // clicking the button will get the user the city's weather info
     });
 
 
