@@ -6,7 +6,16 @@ $(document).ready(function(){
     // Open Weather API URL
     var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=53b6f538d72c7744df9aec607b80628c";
 
+    // AJAX call
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(){
 
+
+
+        
+    });
 
 
 
