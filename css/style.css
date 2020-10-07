@@ -7,7 +7,10 @@ header {
     background-color: blue;
     text-align: center;
     height: 6rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
 }
 
 .content {
