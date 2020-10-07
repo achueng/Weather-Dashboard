@@ -5,9 +5,6 @@ $(document).ready(function(){
     // Cities that will be taken from User Input -- Search
     var cityName; // will be assigned the value of userInput
 
-    // Open Weather API URL
-    var queryURL = "https://cors-anywhere.herokuapp.com/"+ "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=53b6f538d72c7744df9aec607b80628c";
-
     // PSEUDO CODE
     // When user clicks search button
     $("#search-button").on("click", () => {
@@ -21,29 +18,28 @@ $(document).ready(function(){
         else {
             cityName = userInput;
         }
-    });
-
-    // AJAX call
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response){
-        // console.log(response);
-
-        // PSEUDO CODE
-        // Take the following:
-        //     1. temp -> response.main.temp
-        //     2. humidity -> response.main.humidity
-        //     3. wind -> response.wind.speed
-        // Use .text(the above) to its respectable class
-
-        
-        
-        
-    });
-
-
+        // Open Weather API URL
+        var genURL = "https://cors-anywhere.herokuapp.com/"+ "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=53b6f538d72c7744df9aec607b80628c";
     
+        // AJAX call
+        $.ajax({
+            url: genURL,
+            method: "GET"
+        }).then(function(response){
+            // console.log(response);
+            // PSEUDO CODE
+            // Take the following:
+            //     1. temp -> response.main.temp
+            //     2. humidity -> response.main.humidity
+            //     3. wind -> response.wind.speed
+            // Use .text(the above) to its respectable class
+            
+            
+            
+        });
+
+
+    });
 
 
 
