@@ -34,8 +34,8 @@ $(document).ready(function(){
             //     3. wind -> response.wind.speed
             // Use .text(the above) to its respectable class
             $(".temp").text(response.main.temp.toFixed(1));
-            $(".humid").text(response.main.humidity.toFixed(1));
-            
+            $(".humid").text(response.main.humidity.toFixed(0));
+            $(".wind").text(response.wind.speed.toFixed(1));
         });
 
 
