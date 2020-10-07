@@ -18,6 +18,14 @@ header {
     margin: auto 2rem;
 }
 
+nav {
+    background-color: teal;
+}
+
+.current-city {
+    background-color: pink;
+}
+
 #search {
     width: 14rem;
 }
