@@ -32,9 +32,9 @@ $(document).ready(function(){
             //     2. humidity -> response.main.humidity
             //     3. wind -> response.wind.speed
             // Use .text(the above) to its respectable class
-            $(".temp").text(response.main.temp.toFixed(1));
-            $(".humid").text(response.main.humidity.toFixed(0));
-            $(".wind").text(response.wind.speed.toFixed(1));
+            var temp = $(".temp").append("Temperature: " + response.main.temp.toFixed(1) + " &#8457;");
+            var humid = $(".humid").append("Humidity: " + response.main.humidity.toFixed(0) + "%");
+            var wind = $(".wind").append("Wind Speed: " + response.wind.speed.toFixed(1) + " MPH");
         });
 
         // PSEUDO CODE
