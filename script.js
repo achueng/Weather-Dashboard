@@ -32,7 +32,7 @@ $(document).ready(function(){
             //     2. humidity -> response.main.humidity
             //     3. wind -> response.wind.speed
             // Use .text(the above) to its respectable class
-            var temp = $(".temp").text("Temperature: " + response.main.temp.toFixed(1) + " &#8457;");
+            var temp = $(".temp").text("Temperature: " + response.main.temp.toFixed(1) + "\xB0F");
             var humid = $(".humid").text("Humidity: " + response.main.humidity.toFixed(0) + "%");
             var wind = $(".wind").text("Wind Speed: " + response.wind.speed.toFixed(1) + " MPH");
             $(".overview").append(temp, humid, wind);
@@ -40,7 +40,9 @@ $(document).ready(function(){
 
         // PSEUDO CODE
         // Create a button for each city after user searches
-            // append to nav
+        var newCity = $("<button>").text(cityName);
+        // append button to nav
+        $(".cities").append(newCity);
         // After refreshing the page, the user will still have access to the city's weather data -- localStorage
             // each localstorage setItem will have a unique name
         // clicking the button will get the user the city's weather info
