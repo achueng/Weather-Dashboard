@@ -21,7 +21,7 @@ $(document).ready(function(){
         // Open Weather API URL
         var genURL = "https://cors-anywhere.herokuapp.com/"+ "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=53b6f538d72c7744df9aec607b80628c";
     
-        // AJAX call
+        // AJAX call for current city weather
         $.ajax({
             url: genURL,
             method: "GET"
@@ -40,7 +40,7 @@ $(document).ready(function(){
 
             // PSEUDO CODE
             // Create a button for each city after user searches
-            var newCity = $("<button>").text(cityName);
+            var newCity = $("<button>").text(response.name);
             newCity.addClass("clear button warning city-button"); // use ".city-button" for click event later
             newCity.attr("data-city", cityName); // use data-city later
             // append button to nav
