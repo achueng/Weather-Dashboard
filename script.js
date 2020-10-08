@@ -62,12 +62,33 @@ $(document).ready(function(){
         
 
             
-            
+        });    
+
+        // 5 day forecast doc: https://openweathermap.org/forecast5
+        // Open Weather API URL for 5 day forecast
+        var fiveDayURL = "https://cors-anywhere.herokuapp.com/"+ "api.openweathermap.org/data/2.5/forecast?q="+ cityName + "&units=imperial&appid=53b6f538d72c7744df9aec607b80628c";
+        
+        // AJAX call for five day forecast
+        $.ajax({
+            url: fiveDayURL,
+            method: "GET"
+        }).then(function(res3){
+
+            console.log(res3);
+
+
+        });
+
+
+
+
+
+
 
             // After refreshing the page, the user will still have access to the city's weather data -- localStorage
                 // each localstorage setItem will have a unique name
             // clicking the button will get the user the city's weather info
-        });
+        
     });
 
 
