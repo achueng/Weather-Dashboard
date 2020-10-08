@@ -25,21 +25,21 @@ $(document).ready(function(){
         $.ajax({
             url: genURL,
             method: "GET"
-        }).then(function(response){
+        }).then(function(res1){
             // Take the following the temp, humid, wind from response
             // Use .text(the above) to its respectable class
-            var name = $(".city-name").text(response.name);
-            var temp = $(".temp").text("Temperature: " + response.main.temp.toFixed(1) + "\xB0F");
-            var humid = $(".humid").text("Humidity: " + response.main.humidity.toFixed(0) + "%");
-            var wind = $(".wind").text("Wind Speed: " + response.wind.speed.toFixed(1) + " MPH");
+            var name = $(".city-name").text(res1.name);
+            var temp = $(".temp").text("Temperature: " + res1.main.temp.toFixed(1) + "\xB0F");
+            var humid = $(".humid").text("Humidity: " + res1.main.humidity.toFixed(0) + "%");
+            var wind = $(".wind").text("Wind Speed: " + res1.wind.speed.toFixed(1) + " MPH");
             $(".overview").append(name, temp, humid, wind);
 
             // Grab latitude & longitude of city, use in uv ajax call
-            var lat = JSON.stringify(response.coord.lat);
-            var lon = JSON.stringify(response.coord.lon);
+            var lat = JSON.stringify(res1.coord.lat);
+            var lon = JSON.stringify(res1.coord.lon);
 
             // Create a button for each city after user searches
-            var newCity = $("<button>").text(response.name);
+            var newCity = $("<button>").text(res1.name);
             newCity.addClass("clear button warning city-button"); // use ".city-button" for click event later
             newCity.attr("data-city", cityName); // use data-city later
             // append button to nav
@@ -49,7 +49,13 @@ $(document).ready(function(){
             // Open Weather API URL for UV index
             var uvURL = "https://cors-anywhere.herokuapp.com/"+ "http://api.openweathermap.org/data/2.5/uvi?lat="+ lat +"&lon="+ lon +"&appid=53b6f538d72c7744df9aec607b80628c";
 
-            // console.log(uvURL);
+            // AJAX call for uv index
+            $.ajax({
+                url: uvURL,
+                method: "GET"
+            }).then(function(res2){
+                console.log(res2);
+            });
 
             // After refreshing the page, the user will still have access to the city's weather data -- localStorage
                 // each localstorage setItem will have a unique name
