@@ -42,6 +42,7 @@ $(document).ready(function(){
         // Create a button for each city after user searches
         var newCity = $("<button>").text(cityName);
         newCity.addClass("clear button warning city-button"); // add click event on ".city-button"
+        newCity.attr("data-city", cityName);
         // append button to nav
         $(".cities").append(newCity);
         // After refreshing the page, the user will still have access to the city's weather data -- localStorage
