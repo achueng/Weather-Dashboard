@@ -26,10 +26,23 @@ nav {
     background-color: pink;
 }
 
+.overview {
+    padding: 1rem;
+}
+
 #search {
     width: 100%;
 }
 
 #search-button {
     width: 100%;
+}
+
+.five-day-forecast {
+    font-size: 14px;
+}
+
+.card, .card-divider {
+    background-color: skyblue;
+    border: none;
 }
