@@ -78,12 +78,21 @@ $(document).ready(function(){
             function retrieveData(dayIndex){
                 var dataObj = {
                     date: day[dayIndex].dt_txt,
-                    temperature: day[dayIndex].main.temp,
+                    temperature: day[dayIndex].main.temp.toFixed(1),
                     weather: day[dayIndex].weather[0].main
                 };
                 return dataObj;
             };
-            console.log(retrieveData(3));
+            
+            var fiveDayForecast = {
+                day1: retrieveData(3),
+                day2: retrieveData(11),
+                day3: retrieveData(19),
+                day4: retrieveData(27),
+                day5: retrieveData(35)
+            };
+            
+            
 
 
         });
