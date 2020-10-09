@@ -74,7 +74,16 @@ $(document).ready(function(){
             method: "GET"
         }).then(function(res3){
             var day = res3.list;
-            console.log(day);
+
+            function retrieveData(dayIndex){
+                var dataObj = {
+                    date: day[dayIndex].dt_txt,
+                    temperature: day[dayIndex].main.temp,
+                    weather: day[dayIndex].weather[0].main
+                };
+                return dataObj;
+            };
+            console.log(retrieveData(3));
 
 
         });
