@@ -15,16 +15,16 @@
     <header class="grid-container fluid">Weather Dashboard</header>
     <div class="content grid-container grid-x grid-margin-x">
         <!-- Left Vertical Navbar -->
-        <nav class="cities vertical menu cell small-6 medium-4"> 
+        <nav class="cities vertical menu cell small-12 medium-3"> 
             <!-- Search Bar -->
             <input type="search" placeholder="Search for City" id="search">
             <button type="button" class="button" id="search-button">Search</button>
             <!-- Buttons of Cities -- pushed through script -->
         </nav>
         
-        <div class="current-city cell small-6 medium-8">
+        <div class="current-city cell small-12 medium-9">
             <!-- Current City's Overview Weather-->
-            <div class="overview">
+            <div class="overview grid-container">
                 <h3 class="city-name">Current City</h3>
                 <p class="temp">Temperature: </p>
                 <p class="humid">Humidity: </p>
@@ -32,9 +32,55 @@
                 <p class="uv">UV Index: </p>
             </div>
             <!-- Current City's Five Day Forecast -->
-            <div class="five-day-forecast">
-                <!-- Cards of each day's forecast -->
-                    <!-- Includes date, temp, humidity -->
+            <div class="five-day-forecast grid-container">
+                <!-- Cards of forecast includes date, temp, humidity -->
+                <div class="grid-x grid-margin-x small-up-1 medium-up-5">
+                    <div class="cell">
+                        <div class="card">
+                            <h4 class="card-divider">Date</h4>
+                            <div class="card-section">
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <h4>Date</h4>
+                            <div class="card-section">
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <h4>Date</h4>
+                            <div class="card-section">
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <h4>Date</h4>
+                            <div class="card-section">
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="card">
+                            <h4>Date</h4>
+                            <div class="card-section">
+                                <p>Temp</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
