@@ -73,8 +73,8 @@ $(document).ready(function(){
             url: fiveDayURL,
             method: "GET"
         }).then(function(res3){
-
-            console.log(res3);
+            var day = res3.list;
+            console.log(day);
 
 
         });
