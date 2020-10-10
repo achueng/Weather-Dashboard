@@ -5,17 +5,21 @@ $(document).ready(function(){
     // Cities that will be taken from User Input -- Search
     var cityName; // will be assigned the value of userInput
   
+    // Declaring empty array for cities' weather data
+    var cityArr = [];
+
     // When user clicks search button
     $("#search-button").on("click", () => {
         // 1. take value of input search and assign it to userInput
         var userInput = $("#search").val().trim();
-        // if value is "" don't do anything
-        if (userInput === "") {
-            alert("Please input a city name");
-        }       
-        // else assign userInput to cityName
-        else {
+        // if value is not "" assign userInput to cityName
+        if (userInput !== "") {
             cityName = userInput;
+        }       
+        // else don't do anything
+        else {
+            alert("Please input a city name");
+            location.reload();
         }
 
         // Open Weather API URL for general weather data
@@ -29,13 +33,17 @@ $(document).ready(function(){
             // Grab latitude & longitude of city, use in uv ajax call
             var lat = JSON.stringify(res1.coord.lat);
             var lon = JSON.stringify(res1.coord.lon);
+            var name;
+            var temp;
+            var humid;
+            var wind;
             var uv;
+            var newCity;
 
             // Open Weather API URL for UV index
             var uvURL = "https://cors-anywhere.herokuapp.com/"+ "http://api.openweathermap.org/data/2.5/uvi?lat="+ lat +"&lon="+ lon +"&appid=53b6f538d72c7744df9aec607b80628c";
 
             // AJAX call for uv index
-            // wait for gen AJAX call to run all the code prior to this call
             $.ajax({
                 url: uvURL,
                 method: "GET"
@@ -47,14 +55,18 @@ $(document).ready(function(){
 
             // Take the following the temp, humid, wind from response
             // Use .text(the above) to its respectable class
-            var name = $(".city-name").text(res1.name);
-            var temp = $(".temp").text("Temperature: " + res1.main.temp.toFixed(1) + "\xB0F");
-            var humid = $(".humid").text("Humidity: " + res1.main.humidity.toFixed(0) + "%");
-            var wind = $(".wind").text("Wind Speed: " + res1.wind.speed.toFixed(1) + " MPH");
-            $(".overview").prepend(name, temp, humid, wind);
+            name = res1.name;
+            temp = "Temperature: " + res1.main.temp.toFixed(1) + "\xB0F";
+            humid = "Humidity: " + res1.main.humidity.toFixed(0) + "%";
+            wind = "Wind Speed: " + res1.wind.speed.toFixed(1) + " MPH";
+            var nameText = $(".city-name").text(name);
+            var tempText = $(".temp").text(temp);
+            var humidText = $(".humid").text(humid);
+            var windText = $(".wind").text(wind);
+            $(".overview").prepend(nameText, tempText, humidText, windText);
 
             // Create a button for each city after user searches
-            var newCity = $("<button>").text(res1.name);
+            newCity = $("<button>").text(res1.name);
             newCity.addClass("clear button warning city-button"); // use ".city-button" for click event later
             newCity.attr("data-city", cityName); // use data-city later
             // append button to nav
@@ -78,7 +90,7 @@ $(document).ready(function(){
             function retrieveData(dayIndex){
                 var dataObj = {
                     date: day[dayIndex].dt_txt.slice(0,11),
-                    temperature: day[dayIndex].main.temp.toFixed(1),
+                    temperature: day[dayIndex].main.temp.toFixed(1) + "\xB0F",
                     weather: day[dayIndex].weather[0].main
                 };
                 return dataObj;
@@ -97,7 +109,7 @@ $(document).ready(function(){
                 $(dayId).empty();
                 $(dayId).prepend($("<h5>").text(fiveDayForecast[dayNum].date));
                 var dayWeather = $("<p>").text(fiveDayForecast[dayNum].weather);
-                var dayTemp = $("<p>").text(fiveDayForecast[dayNum].temperature + "\xB0F");
+                var dayTemp = $("<p>").text(fiveDayForecast[dayNum].temperature);
                 var sect = $("<div>").addClass("card-section");
                 sect.append(dayWeather, dayTemp);
                 $(dayId).append(sect);
@@ -109,19 +121,21 @@ $(document).ready(function(){
             display("#day4", "day4");
             display("#day5", "day5");
         });
+    
 
 
 
 
-
-
-
-            // After refreshing the page, the user will still have access to the city's weather data -- localStorage
-                // each localstorage setItem will have a unique name
-            // clicking the button will get the user the city's weather info
-        
     });
+    // After refreshing the page, the user will still have access to the city's weather data -- localStorage
+    // each localstorage setItem will have a unique name - city name
+    
 
+
+
+
+
+        // clicking the button will get the user the city's weather info
 
 
 
