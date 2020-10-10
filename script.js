@@ -59,12 +59,18 @@ $(document).ready(function(){
                 wind : "Wind Speed: " + res1.wind.speed.toFixed(1) + " MPH",
                 uv : uv,
             };
-            // Use .text(the above) to its respectable class
-            var nameText = $(".city-name").text(weatherData.name);
-            var tempText = $(".temp").text(weatherData.temp);
-            var humidText = $(".humid").text(weatherData.humid);
-            var windText = $(".wind").text(weatherData.wind);
-            $(".overview").prepend(nameText, tempText, humidText, windText);
+            
+            // Use .text(the above) to its respectable class in function
+            function renderWeather() {
+                var nameText = $(".city-name").text(weatherData.name);
+                var tempText = $(".temp").text(weatherData.temp);
+                var humidText = $(".humid").text(weatherData.humid);
+                var windText = $(".wind").text(weatherData.wind);
+                $(".overview").prepend(nameText, tempText, humidText, windText);
+            };
+
+            // Call function to render overview weather data
+            renderWeather();
 
             var cityBtnName = res1.name;
 
