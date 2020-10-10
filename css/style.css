@@ -24,6 +24,7 @@ nav {
 
 .current-city {
     background-color: pink;
+    font-weight: bold;
 }
 
 .overview {
@@ -40,6 +41,16 @@ nav {
 
 .five-day-forecast {
     font-size: 14px;
+}
+
+h5 {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 1rem;
+}
+
+#day1-sect {
+    padding: 1.5rem;
 }
 
 .card, .card-divider {
