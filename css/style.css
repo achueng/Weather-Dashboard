@@ -49,11 +49,8 @@ h5 {
     margin-top: 1rem;
 }
 
-#day1-sect {
-    padding: 1.5rem;
-}
-
-.card, .card-divider {
+.card, .card-section {
     background-color: skyblue;
     border: none;
+    padding: 1rem;
 }
