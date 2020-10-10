@@ -35,7 +35,6 @@ $(document).ready(function(){
             var lat = JSON.stringify(res1.coord.lat);
             var lon = JSON.stringify(res1.coord.lon);
             var uv;
-            var newCity;
 
             // Open Weather API URL for UV index
             var uvURL = "https://cors-anywhere.herokuapp.com/"+ "http://api.openweathermap.org/data/2.5/uvi?lat="+ lat +"&lon="+ lon +"&appid=53b6f538d72c7744df9aec607b80628c";
@@ -67,13 +66,16 @@ $(document).ready(function(){
             var windText = $(".wind").text(weatherData.wind);
             $(".overview").prepend(nameText, tempText, humidText, windText);
 
+            var cityBtnName = res1.name;
+
             // Create a button for each city after user searches
-            newCity = $("<button>").text(res1.name);
+            var newCity = $("<button>").text(cityBtnName);
             newCity.addClass("clear button warning city-button"); // use ".city-button" for click event later
             newCity.attr("data-city", cityName); // use data-city later
             // append button to nav
             $(".cities").append(newCity);
         
+            cityArr.push(cityBtnName);
             cityArr.push(weatherData);
             
         });    
