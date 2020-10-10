@@ -33,10 +33,6 @@ $(document).ready(function(){
             // Grab latitude & longitude of city, use in uv ajax call
             var lat = JSON.stringify(res1.coord.lat);
             var lon = JSON.stringify(res1.coord.lon);
-            var name;
-            var temp;
-            var humid;
-            var wind;
             var uv;
             var newCity;
 
@@ -48,21 +44,26 @@ $(document).ready(function(){
                 url: uvURL,
                 method: "GET"
             }).then(function(res2){
-                uv = $(".uv").text("UV Index: " + JSON.stringify(res2.value));
-                $(".overview").append(uv);
+                uv = "UV Index: " + JSON.stringify(res2.value);
+                var uvText = $(".uv").text(uv)
+                $(".overview").append(uvText);
             });
 
 
             // Take the following the temp, humid, wind from response
+            // Place weather data + uv from uv call in an object
+            var weatherData = {
+                name : res1.name,
+                temp : "Temperature: " + res1.main.temp.toFixed(1) + "\xB0F",
+                humid : "Humidity: " + res1.main.humidity.toFixed(0) + "%",
+                wind : "Wind Speed: " + res1.wind.speed.toFixed(1) + " MPH",
+                uv : uv,
+            };
             // Use .text(the above) to its respectable class
-            name = res1.name;
-            temp = "Temperature: " + res1.main.temp.toFixed(1) + "\xB0F";
-            humid = "Humidity: " + res1.main.humidity.toFixed(0) + "%";
-            wind = "Wind Speed: " + res1.wind.speed.toFixed(1) + " MPH";
-            var nameText = $(".city-name").text(name);
-            var tempText = $(".temp").text(temp);
-            var humidText = $(".humid").text(humid);
-            var windText = $(".wind").text(wind);
+            var nameText = $(".city-name").text(weatherData.name);
+            var tempText = $(".temp").text(weatherData.temp);
+            var humidText = $(".humid").text(weatherData.humid);
+            var windText = $(".wind").text(weatherData.wind);
             $(".overview").prepend(nameText, tempText, humidText, windText);
 
             // Create a button for each city after user searches
@@ -72,7 +73,7 @@ $(document).ready(function(){
             // append button to nav
             $(".cities").append(newCity);
         
-
+            cityArr.push(weatherData);
             
         });    
 
@@ -120,8 +121,14 @@ $(document).ready(function(){
             display("#day3", "day3");
             display("#day4", "day4");
             display("#day5", "day5");
+
+            cityArr.push(fiveDayForecast);
+            console.log(cityArr);
+
+
         });
     
+        
 
 
 
