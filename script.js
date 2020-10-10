@@ -5,8 +5,6 @@ $(document).ready(function(){
     // Cities that will be taken from User Input -- Search
     var cityName; // will be assigned the value of userInput
   
-    // Declaring empty array for cities' weather data
-    var cityArr = [];
 
     // When user clicks search button
     $("#search-button").on("click", () => {
@@ -21,6 +19,9 @@ $(document).ready(function(){
             alert("Please input a city name");
             location.reload();
         }
+
+        // Declaring empty array for cities' weather data
+        var cityArr = [];
 
         // Open Weather API URL for general weather data
         var genURL = "https://cors-anywhere.herokuapp.com/"+ "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=53b6f538d72c7744df9aec607b80628c";
@@ -123,7 +124,9 @@ $(document).ready(function(){
             display("#day5", "day5");
 
             cityArr.push(fiveDayForecast);
-            console.log(cityArr);
+            
+            // After refreshing the page, the user will still have access to the city's weather data -- localStorage
+            localStorage.setItem(cityName, JSON.stringify(cityArr));
 
 
         });
@@ -134,8 +137,8 @@ $(document).ready(function(){
 
 
     });
-    // After refreshing the page, the user will still have access to the city's weather data -- localStorage
-    // each localstorage setItem will have a unique name - city name
+    
+
     
 
 
@@ -143,8 +146,6 @@ $(document).ready(function(){
 
 
         // clicking the button will get the user the city's weather info
-
-
 
 
 
