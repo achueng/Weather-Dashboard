@@ -92,12 +92,22 @@ $(document).ready(function(){
                 day5: retrieveData(35)
             };
             
-            $("#day1").prepend($("<h5>").text(fiveDayForecast.day1.date));
-            var day1Weather = $("<p>").text(fiveDayForecast.day1.weather);
-            var day1Temp = $("<p>").text(fiveDayForecast.day1.temperature + "\xB0F");
-            $("#day1-sect").append(day1Weather, day1Temp);
-            
+            // pass "#day_", "day_" as arguments when calling
+            function display(dayId, dayNum){
+                $(dayId).empty();
+                $(dayId).prepend($("<h5>").text(fiveDayForecast[dayNum].date));
+                var dayWeather = $("<p>").text(fiveDayForecast[dayNum].weather);
+                var dayTemp = $("<p>").text(fiveDayForecast[dayNum].temperature + "\xB0F");
+                var sect = $("<div>").addClass("card-section");
+                sect.append(dayWeather, dayTemp);
+                $(dayId).append(sect);
+            };
 
+            display("#day1", "day1");
+            display("#day2", "day2");
+            display("#day3", "day3");
+            display("#day4", "day4");
+            display("#day5", "day5");
         });
 
 
