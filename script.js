@@ -77,7 +77,7 @@ $(document).ready(function(){
 
             function retrieveData(dayIndex){
                 var dataObj = {
-                    date: day[dayIndex].dt_txt,
+                    date: day[dayIndex].dt_txt.slice(0,11),
                     temperature: day[dayIndex].main.temp.toFixed(1),
                     weather: day[dayIndex].weather[0].main
                 };
@@ -92,8 +92,11 @@ $(document).ready(function(){
                 day5: retrieveData(35)
             };
             
+            $("#day1").prepend($("<h5>").text(fiveDayForecast.day1.date));
+            var day1Weather = $("<p>").text(fiveDayForecast.day1.weather);
+            var day1Temp = $("<p>").text(fiveDayForecast.day1.temperature + "\xB0F");
+            $("#day1-sect").append(day1Weather, day1Temp);
             
-
 
         });
 
