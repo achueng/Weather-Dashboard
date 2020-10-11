@@ -77,13 +77,18 @@ $(document).ready(function(){
 
             var cityBtnName = res1.name;
 
-            // Create a button for each city after user searches
-            var newCity = $("<button>").text(cityBtnName);
-            newCity.addClass("clear button warning city-button"); // use ".city-button" for click event later
-            newCity.attr("data-city", cityName); // use data-city later
-            // append button to nav
-            $(".cities").append(newCity);
-        
+            function renderBtn() {
+                // Create a button for each city after user searches
+                var newCity = $("<button>").text(cityBtnName);
+                newCity.addClass("clear button warning city-button"); // use ".city-button" for click event later
+                newCity.attr("data-city", cityName); // use data-city later
+                // append button to nav
+                $(".cities").append(newCity);
+            };
+
+            // add if/else conditional to only create one button per city
+            renderBtn();
+
             cityArr.push(cityBtnName);
             cityArr.push(weatherData);
             
