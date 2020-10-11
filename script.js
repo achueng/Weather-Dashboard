@@ -5,6 +5,8 @@ $(document).ready(function(){
     // Cities that will be taken from User Input -- Search
     var cityName; // will be assigned the value of userInput
   
+    // Declare empty array for all cities
+    var cities = [];
 
     // When user clicks search button
     $("#search-button").on("click", () => {
@@ -142,12 +144,14 @@ $(document).ready(function(){
             renderForecast();
 
             cityArr.push(fiveDayForecast);
-            
-            // After refreshing the page, the user will still have access to the city's weather data -- localStorage
-            localStorage.setItem(cityName, JSON.stringify(cityArr));
+            cities.push(cityArr);
+
+            // After refreshing the page, the user will still have access to the cities' weather data -- localStorage
+            localStorage.setItem("weather-dash", JSON.stringify(cities));
 
 
         });
+    // clicking the button will get the user the city's weather info
     
         
 
@@ -163,9 +167,7 @@ $(document).ready(function(){
 
 
 
-        // clicking the button will get the user the city's weather info
-
-
+     
 
 
 
