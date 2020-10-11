@@ -34,6 +34,7 @@ $(document).ready(function(){
             // Grab latitude & longitude of city, use in uv ajax call
             var lat = JSON.stringify(res1.coord.lat);
             var lon = JSON.stringify(res1.coord.lon);
+            var cityBtnName = res1.name;
             var uv;
 
             // Open Weather API URL for UV index
@@ -51,7 +52,6 @@ $(document).ready(function(){
                 };
                 renderUV();
             });
-
 
             // Take the following the temp, humid, wind from response
             // Place weather data + uv from uv call in an object
@@ -72,11 +72,6 @@ $(document).ready(function(){
                 $(".overview").prepend(nameText, tempText, humidText, windText);
             };
 
-            // Call function to render overview weather data
-            renderWeather();
-
-            var cityBtnName = res1.name;
-
             function renderBtn() {
                 // Create a button for each city after user searches
                 var newCity = $("<button>").text(cityBtnName);
@@ -85,9 +80,11 @@ $(document).ready(function(){
                 // append button to nav
                 $(".cities").append(newCity);
             };
-
+            
             // add if/else conditional to only create one button per city
             renderBtn();
+            // Call function to render overview weather data
+            renderWeather();
 
             cityArr.push(cityBtnName);
             cityArr.push(weatherData);
@@ -133,11 +130,16 @@ $(document).ready(function(){
                 $(dayId).append(sect);
             };
 
-            display("#day1", "day1");
-            display("#day2", "day2");
-            display("#day3", "day3");
-            display("#day4", "day4");
-            display("#day5", "day5");
+            function renderForecast() {
+                display("#day1", "day1");
+                display("#day2", "day2");
+                display("#day3", "day3");
+                display("#day4", "day4");
+                display("#day5", "day5");
+            };
+
+            // Call function to display forecast data on page
+            renderForecast();
 
             cityArr.push(fiveDayForecast);
             
