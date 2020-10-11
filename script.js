@@ -44,9 +44,12 @@ $(document).ready(function(){
                 url: uvURL,
                 method: "GET"
             }).then(function(res2){
-                uv = "UV Index: " + JSON.stringify(res2.value);
-                var uvText = $(".uv").text(uv)
-                $(".overview").append(uvText);
+                function renderUV() {
+                    uv = "UV Index: " + JSON.stringify(res2.value);
+                    var uvText = $(".uv").text(uv)
+                    $(".overview").append(uvText);
+                };
+                renderUV();
             });
 
 
