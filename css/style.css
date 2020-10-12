@@ -19,7 +19,7 @@ header {
 }
 
 nav {
-    background-color: teal;
+    background-color: skyblue;
 }
 
 .current-city {
@@ -50,7 +50,7 @@ h5 {
 }
 
 .card, .card-section {
-    background-color: skyblue;
+    background-color: teal;
     border: none;
     padding: 1rem;
 }
