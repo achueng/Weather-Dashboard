@@ -11,7 +11,6 @@ $(document).ready(function(){
     function init() {
         var get = JSON.parse(localStorage.getItem("weather-dash"));
         if (get !== null) {
-            cities = get;
             for (var i=0; i<get.length; i++) {
                 var storedCityName = get[i][0];
                 renderWeather(storedCityName);
