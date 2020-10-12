@@ -8,20 +8,33 @@ $(document).ready(function(){
     // Declare empty array for all cities
     var cities = [];
 
+    function init() {
+        var get = JSON.parse(localStorage.getItem("weather-dash"));
+        if (get !== null) {
+            cities = get;
+            for (var i=0; i<get.length; i++) {
+                var storedCityName = get[i][0];
+                renderWeather(storedCityName);
+            }
+        }
+        
+    };
+
+    init();
+
     // When user clicks search button
-    $("#search-button").on("click", () => {
+    $("#search-button").on("click", renderWeather);
+    
+    function renderWeather(inputName) {
+        
         // 1. take value of input search and assign it to userInput
         var userInput = $("#search").val().trim();
         // if value is not "" assign userInput to cityName
         if (userInput !== "") {
-            cityName = userInput;
+            inputName = userInput;
         }       
-        // else don't do anything
-        else {
-            alert("Please input a city name");
-            location.reload();
-        }
 
+        cityName = inputName;
         // Declaring empty array for cities' weather data
         var cityArr = [];
 
@@ -47,12 +60,12 @@ $(document).ready(function(){
                 url: uvURL,
                 method: "GET"
             }).then(function(res2){
-                function renderUV() {
+                // function renderUV() {
                     uv = "UV Index: " + JSON.stringify(res2.value);
                     var uvText = $(".uv").text(uv)
                     $(".overview").append(uvText);
-                };
-                renderUV();
+                // };
+                // renderUV();
             });
 
             // Take the following the temp, humid, wind from response
@@ -66,7 +79,7 @@ $(document).ready(function(){
             };
             
             // Use .text(the above) to its respectable class in function
-            function renderWeather() {
+            function renderOverview() {
                 var nameText = $(".city-name").text(weatherData.name);
                 var tempText = $(".temp").text(weatherData.temp);
                 var humidText = $(".humid").text(weatherData.humid);
@@ -77,7 +90,7 @@ $(document).ready(function(){
             function renderBtn() {
                 // Create a button for each city after user searches
                 var newCity = $("<button>").text(cityBtnName);
-                newCity.addClass("clear button warning city-button"); // use ".city-button" for click event later
+                newCity.addClass("clear button secondary city-button"); // use ".city-button" for click event later
                 newCity.attr("data-city", cityName); // use data-city later
                 // append button to nav
                 $(".cities").append(newCity);
@@ -86,7 +99,7 @@ $(document).ready(function(){
             // add if/else conditional to only create one button per city
             renderBtn();
             // Call function to render overview weather data
-            renderWeather();
+            renderOverview();
 
             cityArr.push(cityBtnName);
             cityArr.push(weatherData);
@@ -151,14 +164,12 @@ $(document).ready(function(){
 
 
         });
-    // clicking the button will get the user the city's weather info
-    
         
+         // clicking the button will get the user the city's weather info
 
 
 
-
-    });
+    };
     
 
     
