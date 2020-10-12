@@ -50,7 +50,7 @@ h5 {
 }
 
 .card, .card-section {
-    background-color: teal;
+    background-color: rgb(157, 226, 226);
     border: none;
     padding: 1rem;
 }
