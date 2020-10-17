@@ -16,6 +16,9 @@ $(document).ready(function(){
                 renderWeather(storedCityName);
             }
         }
+        else {
+            $(".five-day-forecast").hide();
+        }
         
     };
 
@@ -145,6 +148,7 @@ $(document).ready(function(){
             };
 
             function renderForecast() {
+                $(".five-day-forecast").show();
                 display("#day1", "day1");
                 display("#day2", "day2");
                 display("#day3", "day3");
